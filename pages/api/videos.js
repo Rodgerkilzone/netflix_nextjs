@@ -1,6 +1,6 @@
 import { postVideos } from '../../utils/cloudinary';
 import formidable from 'formidable';
-
+import { getAllThumbnails, postThumbnail } from '../../utils/cloudinary';
 export const config = {
   api: {
     bodyParser: false,
@@ -18,6 +18,7 @@ try {
   form.keepExtensions = true;
   form.parse(req, async (err, fields, files) => {
     console.log(err, fields, files);
+    
     const video = await postVideos(files["video"].path);
     console.log(video);
     res.status(200).json(video);
